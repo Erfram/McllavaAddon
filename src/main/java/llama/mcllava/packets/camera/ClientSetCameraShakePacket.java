@@ -1,6 +1,7 @@
 package llama.mcllava.packets.camera;
 
 import io.netty.buffer.ByteBuf;
+import llama.mcllava.ClientMethods;
 import llama.mcllava.utility.Shake;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -57,13 +58,9 @@ public class ClientSetCameraShakePacket implements IMessage {
     public static class Handler implements IMessageHandler<ClientSetCameraShakePacket, IMessage> {
         @Override
         public IMessage onMessage(ClientSetCameraShakePacket packet, MessageContext ctx) {
-            Shake.x = packet.x;
-            Shake.y = packet.y;
-            Shake.z = packet.z;
-            Shake.rotation = packet.rotation;
-            Shake.scale = packet.scale;
-            Shake.minus = packet.minus;
-            Shake.plus = packet.plus;
+            if(ctx.side.isClient()) {
+                ClientMethods.setCameraShakeToCliet(packet.x, packet.y, packet.z, packet.angle, packet.rotation, packet.scale, packet.minus, packet.plus);
+            }else{}
 
             return null;
         }

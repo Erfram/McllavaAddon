@@ -12,5 +12,5 @@ public class LlavaMethods {
     public static final Map<UUID, Consumer<double[]>> mousePositionCallBacks = new HashMap<>();
     public static final Map<UUID, Consumer<String>> systemTimeCallBacks = new HashMap<>();
     public static final Map<UUID, Consumer<Boolean>> getSettingCameraCallBacks = new HashMap<>();
-    public static final Map<UUID, Consumer<ExtendedScriptVector>> extendedScriptVectorCallBack = new HashMap<>();
+    public static final Map<UUID, Consumer<ExtendedScriptVector>> extendedScriptVectorCallBacks = new HashMap<>();
 }

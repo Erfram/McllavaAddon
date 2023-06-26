@@ -9,7 +9,7 @@ public class ExtendedScriptVector extends ScriptVector {
     public float minus;
     public float plus;
 
-    public ExtendedScriptVector(double x, double y, double z, float angle, float rotation, float scale, float minus, float plus) {
+    public ExtendedScriptVector(float x, float y, float z, float angle, float rotation, float scale, float minus, float plus) {
         super(x, y, z);
         this.angle = angle;
         this.rotation = rotation;

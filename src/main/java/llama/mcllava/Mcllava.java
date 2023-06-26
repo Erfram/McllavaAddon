@@ -19,7 +19,7 @@ public class Mcllava {
 
     public static final String MOD_ID = "mcllava";
     public static final String MOD_NAME = "Mcllava_Addon";
-    public static final String VERSION = "0.1.1";
+    public static final String VERSION = "0.2";
     public static final Logger LOGGER = LogManager.getLogManager().getLogger(MOD_ID);
 
     public static final SimpleNetworkWrapper NETWORK = new SimpleNetworkWrapper(Mcllava.MOD_ID);

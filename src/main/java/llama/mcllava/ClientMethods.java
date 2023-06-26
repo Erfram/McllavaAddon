@@ -1,8 +1,5 @@
 package llama.mcllava;
 
-import jdk.nashorn.internal.objects.Global;
-import jdk.nashorn.internal.parser.JSONParser;
-import jdk.nashorn.internal.runtime.*;
 import llama.mcllava.utility.Shake;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiConfirmOpenLink;
@@ -10,18 +7,13 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.Sys;
 
 import java.awt.*;
-import java.io.FileReader;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import jdk.nashorn.internal.runtime.JSONFunctions;
 
 @SideOnly(Side.CLIENT)
 public class ClientMethods {
@@ -103,8 +95,29 @@ public class ClientMethods {
         return Shake.isActive;
     }
 
-    public static boolean getCameraShakeToClient(){
-        return Shake.isActive;
+    public static float[] getCameraShakeToClient(){
+        float x = Shake.x;
+        float y = Shake.y;
+        float z = Shake.z;
+        float angle = Shake.angle;
+        float rotation = Shake.rotation;
+        float scale = Shake.scale;
+        float minus = Shake.minus;
+        float plus = Shake.plus;
+
+        float[] values = {x, y, z, angle, rotation, scale, minus, plus};
+        return values;
+    }
+
+    public static void setCameraShakeToCliet(float x, float y, float z, float angle, float rotation, float scale, float minus, float plus){
+        Shake.x = x;
+        Shake.y = y;
+        Shake.z = z;
+        Shake.angle = angle;
+        Shake.rotation = rotation;
+        Shake.scale = scale;
+        Shake.minus = minus;
+        Shake.plus = plus;
     }
 
 //    public static Object parse(final Object text, final Object reviver) {

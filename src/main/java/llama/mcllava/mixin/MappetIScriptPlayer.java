@@ -1,8 +1,10 @@
 package llama.mcllava.mixin;
 
 import llama.mcllava.CommonProxy;
+import llama.mcllava.ExtendedScriptVector;
 import llama.mcllava.Mcllava;
 import llama.mcllava.packets.camera.ClientEnableSettingCameraPacket;
+import llama.mcllava.packets.camera.ClientGetCameraShakePacket;
 import llama.mcllava.packets.camera.ClientGetEnableSettingCameraPacket;
 import llama.mcllava.packets.camera.ClientSetCameraShakePacket;
 import llama.mcllava.packets.client.*;
@@ -100,8 +102,9 @@ public class MappetIScriptPlayer {
         Mcllava.NETWORK.sendTo(new ClientSetCameraShakePacket(x, y, z, angle, rotation, scale, minus, plus), player);
     }
 
-    public void getCameraShake(){
+    public void getCameraShake(Consumer<ExtendedScriptVector> callback){
         EntityPlayerMP player = CommonProxy.getPlayer(this);
+        extendedScriptVectorCallBacks.put(player.getUniqueID(), callback);
 
         Mcllava.NETWORK.sendTo(new ClientGetCameraShakePacket(), player);
     }
