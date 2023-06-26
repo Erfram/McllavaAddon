@@ -1,0 +1,19 @@
+[
+  {
+    "modid": "mcllava",
+    "name": "Mcllava_Addon",
+    "description": "Аддон mappet'a",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [
+      "llama",
+      "_Demon_"
+    ],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
