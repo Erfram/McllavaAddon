@@ -22,29 +22,32 @@ public class CommonProxy
         Mcllava.NETWORK.registerMessage(new ClientOpenLinkPacket.Handler(), ClientOpenLinkPacket.class, 4, Side.CLIENT);
         Mcllava.NETWORK.registerMessage(new ClientSetCameraShakePacket.Handler(), ClientSetCameraShakePacket.class, 5, Side.CLIENT);
         Mcllava.NETWORK.registerMessage(new ClientEnableSettingCameraPacket.Handler(), ClientEnableSettingCameraPacket.class, 6, Side.CLIENT);
+        Mcllava.NETWORK.registerMessage(new ClientSetCameraRotationsPacket.Handler(), ClientSetCameraRotationsPacket.class, 7, Side.CLIENT);
+        Mcllava.NETWORK.registerMessage(new ClientSendShakeInfoPacket.Handler(), ClientSendShakeInfoPacket.class, 8, Side.CLIENT);
 
-        Mcllava.NETWORK.registerMessage(new ClientGetClipboardPacket.Handler(), ClientGetClipboardPacket.class, 7, Side.CLIENT);
-        Mcllava.NETWORK.registerMessage(new ServerGetClipboardPacket.Handler(), ServerGetClipboardPacket.class, 8, Side.SERVER);
+        Mcllava.NETWORK.registerMessage(new ClientGetClipboardPacket.Handler(), ClientGetClipboardPacket.class, 9, Side.CLIENT);
+        Mcllava.NETWORK.registerMessage(new ServerGetClipboardPacket.Handler(), ServerGetClipboardPacket.class, 10, Side.SERVER);
 
-        Mcllava.NETWORK.registerMessage(new ClientGetPerspectivePacket.Handler(), ClientGetPerspectivePacket.class, 9, Side.CLIENT);
-        Mcllava.NETWORK.registerMessage(new ServerGetPerspectivePacket.Handler(), ServerGetPerspectivePacket.class, 10, Side.SERVER);
+        Mcllava.NETWORK.registerMessage(new ClientGetPerspectivePacket.Handler(), ClientGetPerspectivePacket.class, 11, Side.CLIENT);
+        Mcllava.NETWORK.registerMessage(new ServerGetPerspectivePacket.Handler(), ServerGetPerspectivePacket.class, 12, Side.SERVER);
 
-        Mcllava.NETWORK.registerMessage(new ClientGetMousePositionPacket.Handler(), ClientGetMousePositionPacket.class, 11, Side.CLIENT);
-        Mcllava.NETWORK.registerMessage(new ServerGetMousePositionPacket.Handler(), ServerGetMousePositionPacket.class, 12, Side.SERVER);
+        Mcllava.NETWORK.registerMessage(new ClientGetMousePositionPacket.Handler(), ClientGetMousePositionPacket.class, 13, Side.CLIENT);
+        Mcllava.NETWORK.registerMessage(new ServerGetMousePositionPacket.Handler(), ServerGetMousePositionPacket.class, 14, Side.SERVER);
 
-        Mcllava.NETWORK.registerMessage(new ClientGetSettingPacket.Handler(), ClientGetSettingPacket.class, 13, Side.CLIENT);
-        Mcllava.NETWORK.registerMessage(new ServerGetSettingPacket.Handler(), ServerGetSettingPacket.class, 14, Side.SERVER);
+        Mcllava.NETWORK.registerMessage(new ClientGetSettingPacket.Handler(), ClientGetSettingPacket.class, 15, Side.CLIENT);
+        Mcllava.NETWORK.registerMessage(new ServerGetSettingPacket.Handler(), ServerGetSettingPacket.class, 16, Side.SERVER);
 
-        Mcllava.NETWORK.registerMessage(new ClientGetSystemTimePacket.Handler(), ClientGetSystemTimePacket.class, 15, Side.CLIENT);
-        Mcllava.NETWORK.registerMessage(new ServerGetSystemTimePacket.Handler(), ServerGetSystemTimePacket.class, 16, Side.SERVER);
+        Mcllava.NETWORK.registerMessage(new ClientGetSystemTimePacket.Handler(), ClientGetSystemTimePacket.class, 17, Side.CLIENT);
+        Mcllava.NETWORK.registerMessage(new ServerGetSystemTimePacket.Handler(), ServerGetSystemTimePacket.class, 18, Side.SERVER);
 
-        Mcllava.NETWORK.registerMessage(new ClientSendShakeInfoPacket.Handler(), ClientSendShakeInfoPacket.class, 17, Side.CLIENT);
+        Mcllava.NETWORK.registerMessage(new ClientGetEnableSettingCameraPacket.Handler(), ClientGetEnableSettingCameraPacket.class, 19, Side.CLIENT);
+        Mcllava.NETWORK.registerMessage(new ServerGetEnableSettingCameraPacket.Handler(), ServerGetEnableSettingCameraPacket.class, 20, Side.SERVER);
 
-        Mcllava.NETWORK.registerMessage(new ClientGetEnableSettingCameraPacket.Handler(), ClientGetEnableSettingCameraPacket.class, 18, Side.CLIENT);
-        Mcllava.NETWORK.registerMessage(new ServerGetEnableSettingCameraPacket.Handler(), ServerGetEnableSettingCameraPacket.class, 19, Side.SERVER);
+        Mcllava.NETWORK.registerMessage(new ClientGetCameraShakePacket.Handler(), ClientGetCameraShakePacket.class, 21, Side.CLIENT);
+        Mcllava.NETWORK.registerMessage(new ServerGetCameraShakePacket.Handler(), ServerGetCameraShakePacket.class, 22, Side.SERVER);
 
-        Mcllava.NETWORK.registerMessage(new ClientGetCameraShakePacket.Handler(), ClientGetCameraShakePacket.class, 20, Side.CLIENT);
-        Mcllava.NETWORK.registerMessage(new ServerGetCameraShakePacket.Handler(), ServerGetCameraShakePacket.class, 21, Side.SERVER);
+        Mcllava.NETWORK.registerMessage(new ClientGetCameraRotationsPacket.Handler(), ClientGetCameraRotationsPacket.class, 23, Side.CLIENT);
+        Mcllava.NETWORK.registerMessage(new ServerGetCameraRotationsPacket.Handler(), ServerGetCameraRotationsPacket.class, 24, Side.SERVER);
     }
 
     public void init(FMLInitializationEvent event)

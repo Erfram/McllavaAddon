@@ -1,12 +1,10 @@
 package llama.mcllava.mixin;
 
+import llama.mcllava.CameraRotationsScriptVector;
 import llama.mcllava.CommonProxy;
-import llama.mcllava.ExtendedScriptVector;
+import llama.mcllava.CameraShakeScriptVector;
 import llama.mcllava.Mcllava;
-import llama.mcllava.packets.camera.ClientEnableSettingCameraPacket;
-import llama.mcllava.packets.camera.ClientGetCameraShakePacket;
-import llama.mcllava.packets.camera.ClientGetEnableSettingCameraPacket;
-import llama.mcllava.packets.camera.ClientSetCameraShakePacket;
+import llama.mcllava.packets.camera.*;
 import llama.mcllava.packets.client.*;
 import mchorse.mappet.api.scripts.code.entities.ScriptPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -102,10 +100,23 @@ public class MappetIScriptPlayer {
         Mcllava.NETWORK.sendTo(new ClientSetCameraShakePacket(x, y, z, angle, rotation, scale, minus, plus), player);
     }
 
-    public void getCameraShake(Consumer<ExtendedScriptVector> callback){
+    public void getCameraShake(Consumer<CameraShakeScriptVector> callback){
         EntityPlayerMP player = CommonProxy.getPlayer(this);
-        extendedScriptVectorCallBacks.put(player.getUniqueID(), callback);
+        cameraShakeScriptVectorCallBacks.put(player.getUniqueID(), callback);
 
         Mcllava.NETWORK.sendTo(new ClientGetCameraShakePacket(), player);
+    }
+
+    public void setCameraRotation(float x, float y, float z, float angle, float rotation, float scale){
+        EntityPlayerMP player = CommonProxy.getPlayer(this);
+
+        Mcllava.NETWORK.sendTo(new ClientSetCameraRotationsPacket(x, y, z, angle, rotation, scale), player);
+    }
+
+    public void getCameraRotations(Consumer<CameraRotationsScriptVector> callback){
+        EntityPlayerMP player = CommonProxy.getPlayer(this);
+        cameraRotationsScripVectorCallBacks.put(player.getUniqueID(), callback);
+
+        Mcllava.NETWORK.sendTo(new ClientGetCameraRotationsPacket(), player);
     }
 }

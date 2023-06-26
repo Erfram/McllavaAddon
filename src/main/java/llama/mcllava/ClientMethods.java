@@ -120,22 +120,26 @@ public class ClientMethods {
         Shake.plus = plus;
     }
 
-//    public static Object parse(final Object text, final Object reviver) {
-//        final String str = JSType.toString(text);
-//        final Global global = Context.getGlobal();
-//        final boolean dualFields = ((ScriptObject) global).useDualFields();
-//        final JSONParser parser = new JSONParser(str, global, dualFields);
-//        final Object value;
-//
-//        value = parser.parse();
-//
-//        try{
-//            Method applyR = JSONFunctions.class.getDeclaredMethod("applyReviver", Global.class, Object.class, Object.class);
-//            applyR.setAccessible(true);
-//
-//            return applyR(global, value, reviver);
-//        }catch(NoSuchMethodException e){
-//            e.printStackTrace();
-//        }
-//    }
+    public static void setCameraRotationsToClient(float x, float y, float z, float angle, float rotation, float scale){
+        Shake.x = x;
+        Shake.y = y;
+        Shake.z = z;
+        Shake.angle = angle;
+        Shake.rotation = rotation;
+        Shake.scale = scale;
+        Shake.minus = 0;
+        Shake.plus = 0;
+    }
+
+    public static float[] getCameraRotationsToClient(){
+        float x = Shake.x;
+        float y = Shake.y;
+        float z = Shake.z;
+        float angle = Shake.angle;
+        float rotation = Shake.rotation;
+        float scale = Shake.scale;
+
+        float[] values = {x, y, z, angle, rotation, scale};
+        return values;
+    }
 }
