@@ -85,7 +85,6 @@ dependencies {
     // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2855'
-    runtime files('lib/FGLW.jar')
 
     //https://mvnrepository.com/artifact/net.lingala.zip4j/zip4j
     embed('org.spongepowered:mixin:0.8-SNAPSHOT') {
@@ -94,10 +93,7 @@ dependencies {
         exclude module: 'gson'
     }
 
-    embed 'net.lingala.zip4j:zip4j:1.2.4'
-
     compile fileTree(dir: 'libs', include: '*.jar')
-    compileOnly fileTree(dir: 'optifine', include: '*.jar')
 }
 
 idea { module { inheritOutputDirs = true } }
