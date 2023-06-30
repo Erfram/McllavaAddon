@@ -1,6 +1,7 @@
 package llama.mcllava;
 
 import llama.mcllava.utility.Arm;
+import llama.mcllava.utility.RenderMHud;
 import llama.mcllava.utility.Shake;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiConfirmOpenLink;
@@ -146,5 +147,13 @@ public class ClientMethods {
 
     public static void enableRenderArmToClient(boolean flag){
         Arm.isActive = flag;
+    }
+
+    public static boolean getEnableRenderArmToClient(){
+        return Arm.isActive;
+    }
+
+    public static void setCanceledRenderMHudToClient(boolean flag){
+        RenderMHud.isActive = flag;
     }
 }

@@ -2,20 +2,20 @@ package llama.mcllava.packets.client;
 
 import io.netty.buffer.ByteBuf;
 import llama.mcllava.ClientMethods;
-import llama.mcllava.packets.server.ServerGetSettingPacket;
+import llama.mcllava.packets.server.SGetSettingPacket;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class ClientGetSettingPacket implements IMessage {
+public class CGetSettingPacket implements IMessage {
 
     // Набор полей данных пакета
     private String option;
 
-    public ClientGetSettingPacket(){}
+    public CGetSettingPacket(){}
 
-    public ClientGetSettingPacket(String options){
+    public CGetSettingPacket(String options){
         this.option = options;
     }
 
@@ -29,12 +29,12 @@ public class ClientGetSettingPacket implements IMessage {
         ByteBufUtils.writeUTF8String(buf, option);
     }
 
-    public static class Handler implements IMessageHandler<ClientGetSettingPacket, IMessage> {
+    public static class Handler implements IMessageHandler<CGetSettingPacket, IMessage> {
         @Override
-        public IMessage onMessage(ClientGetSettingPacket packet, MessageContext ctx) {
+        public IMessage onMessage(CGetSettingPacket packet, MessageContext ctx) {
             String option = ClientMethods.getSettingToClient(packet.option);
 
-            return new ServerGetSettingPacket(option); // В ответ ничего не отправляем
+            return new SGetSettingPacket(option); // В ответ ничего не отправляем
         }
     }
 }

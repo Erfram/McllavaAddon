@@ -7,14 +7,14 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class ServerGetClipboardPacket implements IMessage {
+public class SGetClipboardPacket implements IMessage {
 
     // Набор полей данных пакета
     private String message;
 
-    public ServerGetClipboardPacket(){}
+    public SGetClipboardPacket(){}
 
-    public ServerGetClipboardPacket(String message){
+    public SGetClipboardPacket(String message){
         this.message = message;
     }
 
@@ -28,9 +28,9 @@ public class ServerGetClipboardPacket implements IMessage {
         ByteBufUtils.writeUTF8String(buf, message);
     }
 
-    public static class Handler implements IMessageHandler<ServerGetClipboardPacket, IMessage> {
+    public static class Handler implements IMessageHandler<SGetClipboardPacket, IMessage> {
         @Override
-        public IMessage onMessage(ServerGetClipboardPacket packet, MessageContext ctx) {
+        public IMessage onMessage(SGetClipboardPacket packet, MessageContext ctx) {
             String message = packet.message;
 
             LlavaMethods.clipboardCallBacks.get( ctx.getServerHandler().player.getUniqueID() ).accept(message);

@@ -7,15 +7,15 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class ClientSetSettingPacket implements IMessage {
+public class CSetSettingPacket implements IMessage {
 
     // Набор полей данных пакета
     private String key;
     private Object value;
 
-    public ClientSetSettingPacket(){}
+    public CSetSettingPacket(){}
 
-    public ClientSetSettingPacket(String key, Object value) {
+    public CSetSettingPacket(String key, Object value) {
         this.key = key;
         this.value = value;
     }
@@ -32,9 +32,9 @@ public class ClientSetSettingPacket implements IMessage {
         mchorse.mclib.utils.ByteBufUtils.writeObject(buf, value);
     }
 
-    public static class Handler implements IMessageHandler<ClientSetSettingPacket, IMessage> {
+    public static class Handler implements IMessageHandler<CSetSettingPacket, IMessage> {
         @Override
-        public IMessage onMessage(ClientSetSettingPacket packet, MessageContext ctx) {
+        public IMessage onMessage(CSetSettingPacket packet, MessageContext ctx) {
             String key = packet.key;
             Object value = packet.value;
 

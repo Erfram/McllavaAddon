@@ -7,14 +7,14 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class ClientOpenLinkPacket implements IMessage {
+public class COpenLinkPacket implements IMessage {
 
     // Набор полей данных пакета
     private String url;
 
-    public ClientOpenLinkPacket(){}
+    public COpenLinkPacket(){}
 
-    public ClientOpenLinkPacket(String key) {
+    public COpenLinkPacket(String key) {
         this.url = key;
     }
 
@@ -28,9 +28,9 @@ public class ClientOpenLinkPacket implements IMessage {
         ByteBufUtils.writeUTF8String(buf, url);
     }
 
-    public static class Handler implements IMessageHandler<ClientOpenLinkPacket, IMessage> {
+    public static class Handler implements IMessageHandler<COpenLinkPacket, IMessage> {
         @Override
-        public IMessage onMessage(ClientOpenLinkPacket packet, MessageContext ctx) {
+        public IMessage onMessage(COpenLinkPacket packet, MessageContext ctx) {
             String url = packet.url;
 
             // Отправляем сообщение игроку

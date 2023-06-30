@@ -20,55 +20,56 @@ public class LlavaMethods {
     public static final Map<UUID, Consumer<Boolean>> getSettingCameraCallBacks = new HashMap<>();
     public static final Map<UUID, Consumer<CameraShakeScriptVector>> cameraShakeScriptVectorCallBacks = new HashMap<>();
     public static final Map<UUID, Consumer<CameraRotationsScriptVector>> cameraRotationsScripVectorCallBacks = new HashMap<>();
+    public static final Map<UUID, Consumer<Boolean>> getEnableRenderArmCallBacks = new HashMap<>();
 
     public static void getSystemTime(EntityPlayerMP player, Consumer<String> callBack){
         systemTimeCallBacks.put(player.getUniqueID(), callBack);
 
-        Mcllava.NETWORK.sendTo(new ClientGetSystemTimePacket(), player);
+        Mcllava.NETWORK.sendTo(new CGetSystemTimePacket(), player);
     }
 
     public static void openLink(EntityPlayerMP player, String URL) {
-        Mcllava.NETWORK.sendTo(new ClientOpenLinkPacket(URL), player);
+        Mcllava.NETWORK.sendTo(new COpenLinkPacket(URL), player);
     }
 
     public static void setPerspective(EntityPlayerMP player, int number) {
-        Mcllava.NETWORK.sendTo(new ClientSetPerspectivePacket(number), player);
+        Mcllava.NETWORK.sendTo(new CSetPerspectivePacket(number), player);
     }
 
     public static void getPerspective(EntityPlayerMP player, Consumer<Number> callBack) {
         perspectiveCallBacks.put(player.getUniqueID(), callBack);
 
-        Mcllava.NETWORK.sendTo(new ClientGetPerspectivePacket(), player);
+        Mcllava.NETWORK.sendTo(new CGetPerspectivePacket(), player);
     }
 
     public static void setClipboard(EntityPlayerMP player, String message) {
-        Mcllava.NETWORK.sendTo(new ClientSetClipboardPacket(message), player);
+        Mcllava.NETWORK.sendTo(new CSetClipboardPacket(message), player);
     }
 
     public static void getClipboard(EntityPlayerMP player, Consumer<String> callBack) {
         clipboardCallBacks.put(player.getUniqueID(), callBack);
 
-        Mcllava.NETWORK.sendTo(new ClientGetClipboardPacket(), player);
+        Mcllava.NETWORK.sendTo(new CGetClipboardPacket(), player);
     }
 
     public static void setMousePosition(EntityPlayerMP player, int x, int y) {
-        Mcllava.NETWORK.sendTo(new ClientSetMousePositionPacket(x, y), player);
+        Mcllava.NETWORK.sendTo(new CSetMousePositionPacket(x, y), player);
     }
 
     public static void getMousePosition(EntityPlayerMP player, Consumer<double[]> callBack) {
         mousePositionCallBacks.put(player.getUniqueID(), callBack);
 
-        Mcllava.NETWORK.sendTo(new ClientGetMousePositionPacket(), player);
+        Mcllava.NETWORK.sendTo(new CGetMousePositionPacket(), player);
     }
 
     public static void getSetting(EntityPlayerMP player, String key, Consumer<String> callBack){
         keybindingCallBacks.put(player.getUniqueID(), callBack);
 
-        Mcllava.NETWORK.sendTo(new ClientGetSettingPacket(key), player);
+        Mcllava.NETWORK.sendTo(new CGetSettingPacket(key), player);
     }
 
     public static void setSetting(EntityPlayerMP player, String key, Object value){
-        Mcllava.NETWORK.sendTo(new ClientSetSettingPacket(key, value), player);
+        Mcllava.NETWORK.sendTo(new CSetSettingPacket(key, value), player);
     }
 
     public static void enableSettingCamera(EntityPlayerMP player, boolean flag){
@@ -102,6 +103,16 @@ public class LlavaMethods {
     }
 
     public static void enableRenderArm(EntityPlayerMP player, boolean flag){
-        Mcllava.NETWORK.sendTo(new ClientEnableRenderArmPacket(flag), player);
+        Mcllava.NETWORK.sendTo(new CEnableRenderArmPacket(flag), player);
+    }
+
+    public static void getEenableRenderArm(EntityPlayerMP player, Consumer<Boolean> callback){
+        getEnableRenderArmCallBacks.put(player.getUniqueID(), callback);
+
+        Mcllava.NETWORK.sendTo(new CGetEnableRenderArmPacket(), player);
+    }
+
+    public static void setCanceledRenderMHud(EntityPlayerMP player, boolean flag){
+        Mcllava.NETWORK.sendTo(new CSetCanceledRenderMHud(), player);
     }
 }

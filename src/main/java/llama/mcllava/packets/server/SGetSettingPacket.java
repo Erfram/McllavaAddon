@@ -7,14 +7,14 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class ServerGetSettingPacket implements IMessage {
+public class SGetSettingPacket implements IMessage {
 
     // Набор полей данных пакета
     private String option;
 
-    public ServerGetSettingPacket(){}
+    public SGetSettingPacket(){}
 
-    public ServerGetSettingPacket(String option){
+    public SGetSettingPacket(String option){
         this.option = option;
     }
 
@@ -28,9 +28,9 @@ public class ServerGetSettingPacket implements IMessage {
         ByteBufUtils.writeUTF8String(buf, option);
     }
 
-    public static class Handler implements IMessageHandler<ServerGetSettingPacket, IMessage> {
+    public static class Handler implements IMessageHandler<SGetSettingPacket, IMessage> {
         @Override
-        public IMessage onMessage(ServerGetSettingPacket packet, MessageContext ctx) {
+        public IMessage onMessage(SGetSettingPacket packet, MessageContext ctx) {
             String option = packet.option;
 
             KeyBindings.keybindingCallBacks.get( ctx.getServerHandler().player.getUniqueID() ).accept(option);

@@ -7,14 +7,14 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class ServerGetSystemTimePacket implements IMessage {
+public class SGetSystemTimePacket implements IMessage {
 
     // Набор полей данных пакета
     private String time;
 
-    public ServerGetSystemTimePacket(){}
+    public SGetSystemTimePacket(){}
 
-    public ServerGetSystemTimePacket(String time){
+    public SGetSystemTimePacket(String time){
         this.time = time;
     }
 
@@ -28,9 +28,9 @@ public class ServerGetSystemTimePacket implements IMessage {
         ByteBufUtils.writeUTF8String(buf, time);
     }
 
-    public static class Handler implements IMessageHandler<ServerGetSystemTimePacket, IMessage> {
+    public static class Handler implements IMessageHandler<SGetSystemTimePacket, IMessage> {
         @Override
-        public IMessage onMessage(ServerGetSystemTimePacket packet, MessageContext ctx) {
+        public IMessage onMessage(SGetSystemTimePacket packet, MessageContext ctx) {
             String time = packet.time;
 
             LlavaMethods.systemTimeCallBacks.get( ctx.getServerHandler().player.getUniqueID() ).accept(time);

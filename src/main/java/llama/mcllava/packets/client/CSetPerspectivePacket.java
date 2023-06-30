@@ -6,17 +6,17 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class ClientSetPerspectivePacket implements IMessage {
+public class CSetPerspectivePacket implements IMessage {
 
     // Набор полей данных пакета
     private int number;
 
-    public ClientSetPerspectivePacket(){}
+    public CSetPerspectivePacket(){}
 
     /**
      * @param number Число, которое будет выводиться на серверной стороне.
      */
-    public ClientSetPerspectivePacket(int number) {
+    public CSetPerspectivePacket(int number) {
         this.number = number;
     }
 
@@ -36,12 +36,12 @@ public class ClientSetPerspectivePacket implements IMessage {
         buf.writeInt(number);
     }
 
-    public static class Handler implements IMessageHandler<ClientSetPerspectivePacket, IMessage> {
+    public static class Handler implements IMessageHandler<CSetPerspectivePacket, IMessage> {
 
         //Данный метод вызывается для обработки входящих данных из пакета.
 
         @Override
-        public IMessage onMessage(ClientSetPerspectivePacket packet, MessageContext ctx) {
+        public IMessage onMessage(CSetPerspectivePacket packet, MessageContext ctx) {
             if(ctx.side.isClient()) {
                 ClientMethods.setPerspectiveToClient(packet.number);
             }else{}

@@ -6,11 +6,11 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class ClientEnableRenderArmPacket implements IMessage{
+public class CEnableRenderArmPacket implements IMessage{
     private boolean flag;
-    public ClientEnableRenderArmPacket(){}
+    public CEnableRenderArmPacket(){}
 
-    public ClientEnableRenderArmPacket(boolean flag) {
+    public CEnableRenderArmPacket(boolean flag) {
         this.flag = flag;
     }
 
@@ -30,11 +30,11 @@ public class ClientEnableRenderArmPacket implements IMessage{
         buf.writeBoolean(flag);
     }
 
-    public static class Handler implements IMessageHandler<ClientEnableRenderArmPacket, IMessage> {
+    public static class Handler implements IMessageHandler<CEnableRenderArmPacket, IMessage> {
 
         //Данный метод вызывается для обработки входящих данных из пакета.
         @Override
-        public IMessage onMessage(ClientEnableRenderArmPacket packet, MessageContext ctx) {
+        public IMessage onMessage(CEnableRenderArmPacket packet, MessageContext ctx) {
             boolean flag = packet.flag;
 
             if(ctx.side.isClient()) {

@@ -6,14 +6,14 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class ServerGetPerspectivePacket implements IMessage {
+public class SGetPerspectivePacket implements IMessage {
 
     // Набор полей данных пакета
     private int number;
 
-    public ServerGetPerspectivePacket(){}
+    public SGetPerspectivePacket(){}
 
-    public ServerGetPerspectivePacket(int number){
+    public SGetPerspectivePacket(int number){
         this.number = number;
     }
 
@@ -27,9 +27,9 @@ public class ServerGetPerspectivePacket implements IMessage {
         buf.writeInt(number);
     }
 
-    public static class Handler implements IMessageHandler<ServerGetPerspectivePacket, IMessage> {
+    public static class Handler implements IMessageHandler<SGetPerspectivePacket, IMessage> {
         @Override
-        public IMessage onMessage(ServerGetPerspectivePacket packet, MessageContext ctx) {
+        public IMessage onMessage(SGetPerspectivePacket packet, MessageContext ctx) {
             int number = packet.number;
 
             LlavaMethods.perspectiveCallBacks.get( ctx.getServerHandler().player.getUniqueID() ).accept(number);

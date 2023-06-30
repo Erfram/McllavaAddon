@@ -2,16 +2,17 @@ package llama.mcllava.packets.client;
 
 import io.netty.buffer.ByteBuf;
 import llama.mcllava.ClientMethods;
-import llama.mcllava.packets.server.ServerGetClipboardPacket;
+import llama.mcllava.packets.server.SGetSystemTimePacket;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class ClientGetClipboardPacket implements IMessage {
+public class CGetSystemTimePacket implements IMessage {
 
     // Набор полей данных пакета
 
-    public ClientGetClipboardPacket(){}
+    public CGetSystemTimePacket(){}
+
 
     @Override
     public void fromBytes(ByteBuf buf) {
@@ -21,12 +22,12 @@ public class ClientGetClipboardPacket implements IMessage {
     public void toBytes(ByteBuf buf) {
     }
 
-    public static class Handler implements IMessageHandler<ClientGetClipboardPacket, IMessage> {
+    public static class Handler implements IMessageHandler<CGetSystemTimePacket, IMessage> {
         @Override
-        public IMessage onMessage(ClientGetClipboardPacket packet, MessageContext ctx) {
-            String message = ClientMethods.getClipboardToClient();
+        public IMessage onMessage(CGetSystemTimePacket packet, MessageContext ctx) {
+            String time = ClientMethods.getSystemTimeToClient();
 
-            return new ServerGetClipboardPacket(message); // В ответ ничего не отправляем
+            return new SGetSystemTimePacket(time); // В ответ ничего не отправляем
         }
     }
 }
