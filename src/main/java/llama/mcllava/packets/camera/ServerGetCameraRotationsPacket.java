@@ -2,7 +2,6 @@ package llama.mcllava.packets.camera;
 
 import io.netty.buffer.ByteBuf;
 import llama.mcllava.CameraRotationsScriptVector;
-import llama.mcllava.CameraShakeScriptVector;
 import llama.mcllava.LlavaMethods;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;

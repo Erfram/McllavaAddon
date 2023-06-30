@@ -1,135 +1,58 @@
 buildscript {
     repositories {
         maven { url = 'https://files.minecraftforge.net/maven' }
-        maven { url = "https://repo.spongepowered.org/maven" }
 
         jcenter()
         mavenCentral()
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:3.+'
-        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
-apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'idea'
 
 version = "${version}"
 group = 'llama'
 archivesBaseName = 'mcllava'
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
-
-compileJava.options.encoding = 'UTF-8'
-
-sourceCompatibility = targetCompatibility = '1.8'
-compileJava {
-    sourceCompatibility = targetCompatibility = '1.8'
-}
-
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-}
-
-configurations {
-    embed
-    compile.extendsFrom(embed)
-}
-
 minecraft {
     mappings channel: 'snapshot', version: '20171003-1.12'
-    accessTransformer = file('src/main/resources/META-INF/firstaid_at.cfg')
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 
     runs {
         client {
-            workingDirectory project.file('run')
+            workingDirectory project.file('client')
 
-            // Recommended logging data for a userdev environment
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-
-            // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
-
-            args '--tweakClass', 'org.spongepowered.asm.launch.MixinTweaker', '--mixin', 'mixins.mcllava.json'
         }
 
         server {
+            workingDirectory project.file('server')
 
-            // Recommended logging data for a userdev environment
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-
-            // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
-
-            args '--tweakClass', 'org.spongepowered.asm.launch.MixinTweaker', '--mixin', 'mixins.mcllava.json'
         }
-    }
-}
-
-
-repositories {
-    mavenCentral()
-    jcenter()
-    maven {
-        url "https://repo.spongepowered.org/maven"
     }
 }
 
 dependencies {
-    // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
-    // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
-    // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2855'
-
-    //https://mvnrepository.com/artifact/net.lingala.zip4j/zip4j
-    embed('org.spongepowered:mixin:0.8-SNAPSHOT') {
-        exclude module: 'guava'
-        exclude module: 'commons-io'
-        exclude module: 'gson'
-    }
 
     compile fileTree(dir: 'libs', include: '*.jar')
 }
 
+/* compile options */
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
+
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+}
+
+compileJava.options.encoding = 'UTF-8'
+
 idea { module { inheritOutputDirs = true } }
-
-mixin {
-    add sourceSets.main, "mixins.${modid}.refmap.json"
-    defaultObfuscationEnv "searge"
-}
-sourceSets {
-    main {
-        output.resourcesDir = output.classesDir
-        ext.refMap = "mixins.${project.modid}.refmap.json"
-    }
-}
-
-jar {
-    doFirst {
-        from {
-            configurations.embed.collect { it.isDirectory() ? it : zipTree(it) }
-        }
-    }
-    manifest {
-        attributes([
-                "Specification-Title": "mcllava_addon",
-                "Specification-Vendor": "llama",
-                "Specification-Version": "1", // We are version 1 of ourselves
-                "Implementation-Title": project.name,
-                "Implementation-Version": "${version}",
-                "Implementation-Vendor" : "llama",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-        ])
-    }
-    manifest {
-        attributes 'FMLAT': 'firstaid_at.cfg'
-    }
-}
 
 /* Dev build */
 task deobfJar(type: Jar) {
@@ -142,9 +65,19 @@ task sourcesJar(type: Jar) {
     classifier = 'sources'
 }
 
-artifacts {
-    archives deobfJar
-    archives sourcesJar
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+jar {
+    manifest {
+        attributes([
+                "Implementation-Title": "mcllava",
+                "Implementation-Version": "1.0",
+                "ForceLoadAsMod": "true",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
 }
 
 jar.finalizedBy('reobfJar')

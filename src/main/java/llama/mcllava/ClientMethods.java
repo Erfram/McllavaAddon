@@ -1,5 +1,6 @@
 package llama.mcllava;
 
+import llama.mcllava.utility.Arm;
 import llama.mcllava.utility.Shake;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiConfirmOpenLink;
@@ -141,5 +142,9 @@ public class ClientMethods {
 
         float[] values = {x, y, z, angle, rotation, scale};
         return values;
+    }
+
+    public static void enableRenderArmToClient(boolean flag){
+        Arm.isActive = flag;
     }
 }

@@ -1,5 +1,6 @@
 package llama.mcllava;
 
+import llama.mcllava.utility.Arm;
 import llama.mcllava.utility.Shake;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -14,6 +15,7 @@ public class ClientProxy extends CommonProxy
         super.preInit(event);
 
         MinecraftForge.EVENT_BUS.register(new Shake());
+        MinecraftForge.EVENT_BUS.register(new Arm());
     }
 
     @Override
